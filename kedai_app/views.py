@@ -32,6 +32,5 @@ class MenuHarianViewSet(viewsets.ModelViewSet):
     serializer_class = MenuHarianSerializer
 
 class MenuCustomerViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsReadOnly]
     queryset = Menu.objects.all()
     serializer_class = MenuCustomerSerializer
