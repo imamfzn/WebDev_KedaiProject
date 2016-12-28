@@ -82,7 +82,7 @@ class MenuHarian(models.Model):
         db_table = 'menu_harian'
 
     def __str__(self):
-        return '%s' % (self.menu)
+        return '%s' % (self.id_menu)
 
 
 class Pelanggan(models.Model):
@@ -102,12 +102,18 @@ class Pelanggan(models.Model):
 
 
 class Pesanan(models.Model):
+    STATUS_PESANAN_CHOICES = (
+        ('belum konfirmasi','belum konfirmasi'),
+        ('batal','batal'),
+        ('sudah konfirmasi','sudah konfirmasi'),
+        ('sudah dicetak','sudah dicetak')
+    )
     id_pelanggan = models.ForeignKey(Pelanggan, models.DO_NOTHING, db_column='id_pelanggan')
     id_menu_harian = models.ForeignKey(MenuHarian, models.DO_NOTHING, db_column='id_menu_harian')
     id_pesanan = models.AutoField(primary_key=True)
-    waktu_pemesanan = models.TimeField()
+    waktu_pemesanan = models.TimeField(auto_now_add=True)
     jumlah_pesanan = models.IntegerField()
-    status_pesanan = models.CharField(max_length=16)
+    status_pesanan = models.CharField(max_length=16, choices=STATUS_PESANAN_CHOICES, default='belum konfirmasi')
     id_cs = models.ForeignKey(CustomerService, models.DO_NOTHING, db_column='id_cs', blank=True, null=True)
     id_kurir = models.ForeignKey(Kurir, models.DO_NOTHING, db_column='id_kurir', blank=True, null=True)
 
@@ -116,7 +122,7 @@ class Pesanan(models.Model):
         db_table = 'pesanan'
 
     def __str__(self):
-        return '%s %s' % (self.id_pelanggan,waktu_pemesanan)
+        return '%s %s' % (self.id_pelanggan,self.waktu_pemesanan)
 
 
 class Suplier(models.Model):
