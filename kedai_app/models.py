@@ -18,6 +18,9 @@ class CustomerService(models.Model):
         managed = False
         db_table = 'customer_service'
 
+    def __str__(self):
+        return self.nama_cs
+
 
 class DjangoMigrations(models.Model):
     app = models.CharField(max_length=255)
@@ -37,6 +40,9 @@ class Gedung(models.Model):
         managed = False
         db_table = 'gedung'
 
+    def __str__(self):
+        return self.nama_gedung
+
 
 class Kurir(models.Model):
     id_kurir = models.AutoField(primary_key=True)
@@ -45,6 +51,9 @@ class Kurir(models.Model):
     class Meta:
         managed = False
         db_table = 'kurir'
+
+    def __str__(self):
+        return self.nama_kurir
 
 
 class Menu(models.Model):
@@ -59,6 +68,9 @@ class Menu(models.Model):
         managed = False
         db_table = 'menu'
 
+    def __str__(self):
+        return self.nama_menu
+
 
 class MenuHarian(models.Model):
     tanggal = models.DateField()
@@ -68,6 +80,9 @@ class MenuHarian(models.Model):
     class Meta:
         managed = False
         db_table = 'menu_harian'
+
+    def __str__(self):
+        return '%s' % (self.menu)
 
 
 class Pelanggan(models.Model):
@@ -80,6 +95,10 @@ class Pelanggan(models.Model):
     class Meta:
         managed = False
         db_table = 'pelanggan'
+
+
+    def __str__(self):
+        return self.nama_pelanggan
 
 
 class Pesanan(models.Model):
@@ -96,12 +115,18 @@ class Pesanan(models.Model):
         managed = False
         db_table = 'pesanan'
 
+    def __str__(self):
+        return '%s %s' % (self.id_pelanggan,waktu_pemesanan)
+
 
 class Suplier(models.Model):
     nama_suplier = models.CharField(max_length=50)
     alamat_suplier = models.CharField(max_length=100)
-    id_suplier = models.SmallIntegerField(primary_key=True)
+    id_suplier = models.AutoField(primary_key=True)
 
     class Meta:
         managed = False
         db_table = 'suplier'
+
+    def __str__(self):
+        return self.nama_suplier
