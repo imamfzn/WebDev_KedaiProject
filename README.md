@@ -8,6 +8,6 @@ Menggunakan django rest framework untuk pembuatan api.
 Menggunakan angular2 untuk sisi front end.
 
 # Anggota Kelompok
-Muhammad Imam Fauzan (Back - End Developer)
-Muhammad Husain Fadhlullah (Front - End Developer)
-Muhammad Ihya'ul Khair (Front - End Developer)
++ Muhammad Imam Fauzan (Back - End Developer)
++ Muhammad Husain Fadhlullah (Front - End Developer)
++ Muhammad Ihya'ul Khair (Front - End Developer)
