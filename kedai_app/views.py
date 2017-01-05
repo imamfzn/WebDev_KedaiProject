@@ -18,19 +18,13 @@ class PesananViewSet(viewsets.ModelViewSet):
     serializer_class = PesananSerializer
 
 class SuplierViewSet(viewsets.ModelViewSet):
-   
     queryset = Suplier.objects.all()
     serializer_class = SuplierSerializer
 
 class MenuViewSet(viewsets.ModelViewSet):
-  
     queryset = Menu.objects.all()
     serializer_class = MenuSerializer
 
 class MenuHarianViewSet(viewsets.ModelViewSet):
     queryset = MenuHarian.objects.all()
     serializer_class = MenuHarianSerializer
-
-class MenuCustomerViewSet(viewsets.ModelViewSet):
-    queryset = Menu.objects.all()
-    serializer_class = MenuCustomerSerializer

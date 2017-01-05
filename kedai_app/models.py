@@ -82,7 +82,7 @@ class MenuHarian(models.Model):
         db_table = 'menu_harian'
 
     def __str__(self):
-        return '%s' % (self.id_menu)
+        return '%s' % (self.menu)
 
 
 class Pelanggan(models.Model):
