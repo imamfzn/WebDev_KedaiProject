@@ -75,7 +75,7 @@ class Menu(models.Model):
 class MenuHarian(models.Model):
     tanggal = models.DateField()
     id_menu_harian = models.AutoField(primary_key=True)
-    id_menu = models.ForeignKey(Menu, models.DO_NOTHING, db_column='id_menu')
+    menu = models.ForeignKey(Menu, models.DO_NOTHING, db_column='id_menu')
 
     class Meta:
         managed = False
