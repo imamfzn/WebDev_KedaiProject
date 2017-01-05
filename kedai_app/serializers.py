@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import *
+import time
 import datetime
 
 class GedungSerializer(serializers.ModelSerializer):
@@ -15,20 +16,35 @@ class PelangganSerializer(serializers.ModelSerializer):
         #depth = 1
 
 class PesananSerializer(serializers.ModelSerializer):
+    time_now = datetime.datetime.now().time()
+    
+    waktu_pemesanan = serializers.TimeField(default=time_now)
+    id_menu_harian = serializers.PrimaryKeyRelatedField(
+      queryset= MenuHarian.objects.all())
+
     class Meta:
         model = Pesanan
         fields = '__all__'
         #depth = 1
 
+    #validasi waktu pemesanan
     def validate_waktu_pemesanan(self,value):
-        print("cek waktu")
-        LOW_TIME = datetime.time(7,0,0)
-        HIGH_TIME = datetime.time(10,0,0)
+        MIN_TIME = datetime.time(7,0,0)
+        MAX_TIME = datetime.time(10,0,0)
 
-        if value < LOW_TIME or value > HIGH_TIME:
+        if value < MIN_TIME or value > MAX_TIME:
             raise serializers.ValidationError("tidak bisa memesan di luar jam pemesanan (07.00 - 10.00)")
-
         return value
+
+    #validasi tanggal pemesanan pada menu
+    def validate_id_menu_harian(self,value):
+        date_today = datetime.datetime.today()
+        menu_pesanan = MenuHarian.objects.get(id_menu_harian=value.id_menu_harian)
+        menu_harian_today = MenuHarian.objects.filter(tanggal=date_today)
+        if menu_pesanan not in menu_harian_today:
+            raise serializers.ValidationError("Menu tidak tersedia pada hari ini")
+        return value
+
 
 class SuplierSerializer(serializers.ModelSerializer):
     class Meta:
