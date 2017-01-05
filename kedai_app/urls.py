@@ -13,7 +13,7 @@ router.register(r'menu', MenuViewSet)
 router.register(r'menuharian', MenuHarianViewSet)
 
 urlpatterns = [
-    #url(r'^docs/', include('rest_framework_docs.urls')),
+    url(r'^docs/', include('rest_framework_docs.urls')),
     url(r'^servertime/', ServerTime.as_view()),
 ]
 
