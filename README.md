@@ -7,6 +7,13 @@ Pemodelan yang sudah dilakukan : model data, model proses, dan model interface
 Menggunakan django rest framework untuk pembuatan api.
 Menggunakan angular2 untuk sisi front end.
 
+# How To Install
+1. Install python 3
+2. Install Django
+3. Install Django Rest Framework
+4. Install MySQL Client
+5. Install Swagger Doc
+
 # Anggota Kelompok
 + Muhammad Imam Fauzan (Back - End Developer)
 + Muhammad Husain Fadhlullah (Front - End Developer)
