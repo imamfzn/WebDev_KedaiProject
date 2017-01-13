@@ -21,7 +21,7 @@ class ServerTime(APIView):
         return Response(result)
 
 class PelangganViewSet(viewsets.ModelViewSet):
-    permission_classes = [OnlyCustomer]
+    permission_classes = [CustPostPermission]
     queryset = Pelanggan.objects.all()
     serializer_class = PelangganSerializer
 

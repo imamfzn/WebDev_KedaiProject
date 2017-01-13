@@ -55,3 +55,12 @@ class PesananPermission(BasePermission):
 				return False
 		else : return True
 
+class CustPostPermission(BasePermission):
+	my_safe_methods = ['POST']
+	if not request.user.is_authenticated():
+		if request.method in self.my_safe_methods:
+			return True
+		else :
+			return False
+	else if request.method in SAFE_METHODS:
+		return True
