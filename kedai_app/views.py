@@ -26,14 +26,19 @@ class PelangganViewSet(viewsets.ModelViewSet):
     serializer_class = PelangganSerializer
 
 class GedungViewSet(viewsets.ModelViewSet):
-    permission_classes = [OnlyCustomerService]
+    permission_classes = [CustomerServiceLow]
     queryset = Gedung.objects.all()
     serializer_class = GedungSerializer
 
 class PesananViewSet(viewsets.ModelViewSet):
-    permission_classes = [PesananPermission]
+    permission_classes = [OnlyCustomerService]
     queryset = Pesanan.objects.all()
     serializer_class = PesananSerializer
+
+class PesananCustViewSet(viewsets.ModelViewSet):
+    permission_classes = [PesananPermission]
+    queryset = Pesanan.objects.all()
+    serializer_class = PesananCustSerializer
 
 class SuplierViewSet(viewsets.ModelViewSet):
     permission_classes = [OnlyCustomerService]
@@ -41,23 +46,17 @@ class SuplierViewSet(viewsets.ModelViewSet):
     serializer_class = SuplierSerializer
 
 class MenuViewSet(viewsets.ModelViewSet):
-    permission_classes = [OnlyCustomerService]
+    permission_classes = [CustomerServiceLow]
     queryset = Menu.objects.all()
     serializer_class = MenuSerializer
 
 class MenuHarianViewSet(viewsets.ModelViewSet):
-    permission_classes = [OnlyCustomerService]
-    time_now = datetime.datetime.now().time()
-
-    if (time_now < MIN_TIME or time_now > MAX_TIME):
-        queryset = Menu.objects.all()
-        serializer_class = MenuSerializer
-    else:
-        queryset = MenuHarian.objects.all()
-        serializer_class = MenuHarianSerializer
+    permission_classes = [OnlyCSMenuHarian]
+    queryset = MenuHarian.objects.all()
+    serializer_class = MenuHarianSerializer
 
 class MenuPelangganViewSet(viewsets.ModelViewSet):
-    permission_classes = [OnlyCustomerService]
+    permission_classes = [CustomerServiceLow]
     time_now = datetime.datetime.now().time()
     date_today = datetime.datetime.today().date()
 

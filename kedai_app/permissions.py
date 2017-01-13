@@ -28,15 +28,25 @@ class OnlyCustomer(BasePermission):
 				return True
 			else : return False
 
-class OnlyCustomerService(BasePermission):
+class CustomerServiceLow(BasePermission):
 	message = "You must logged in as customer"
 	def has_permission(self,request,view):
 		if request.method in SAFE_METHODS:
 			return True
 		return request.user.is_authenticated()
 
+class OnlyCustomerService(BasePermission):
+	message = "You must logged in as customer"
+	def has_permission(self,request,view):
+		return request.user.is_authenticated()
+
+class OnlyCSMenuHarian(BasePermission):
+	message = "You must logged in as customer"
+	def has_permission(self,request,view):
+		return request.user.is_authenticated()
+
 class PesananPermission(BasePermission):
-	my_safe_methods = ['GET','POST']
+	my_safe_methods = ['POST']
 	def has_permission(self,request,view):
 		if not request.user.is_authenticated():
 			if request.method in self.my_safe_methods:
