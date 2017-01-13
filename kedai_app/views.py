@@ -51,7 +51,7 @@ class MenuViewSet(viewsets.ModelViewSet):
     serializer_class = MenuSerializer
 
 class MenuHarianViewSet(viewsets.ModelViewSet):
-    permission_classes = [OnlyCSMenuHarian]
+    permission_classes = [OnlyCustomerService]
     queryset = MenuHarian.objects.all()
     serializer_class = MenuHarianSerializer
 
