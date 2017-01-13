@@ -66,3 +66,11 @@ class MenuHarianSerializer(serializers.ModelSerializer):
         model = MenuHarian
         fields = ['id_menu_harian','tanggal','id_menu','detail_menu']
         #depth = 1
+
+class MenuPelangganSerializer(serializers.ModelSerializer):
+    id_menu = serializers.PrimaryKeyRelatedField(
+      queryset= Menu.objects.all(), source='menu')
+    detail_menu = DetailMenuSerializer(read_only=True,source='menu') #serializers.SlugRelatedField(slug_field='id_menu',queryset= Menu.objects.all())
+    class Meta:
+        model = MenuHarian
+        fields = ['id_menu_harian','tanggal','id_menu','detail_menu']

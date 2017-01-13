@@ -12,6 +12,7 @@ router.register(r'suplier', SuplierViewSet)
 router.register(r'menu', MenuViewSet)
 #router.register(r'menucustomer', MenuCustomerViewSet)
 router.register(r'menuharian', MenuHarianViewSet)
+router.register(r'menupelanggan',MenuPelangganViewSet,base_name='menu_pelanggan')
 
 swaggerdocs = get_swagger_view(title='Kedai API')
 

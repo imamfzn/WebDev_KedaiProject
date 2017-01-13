@@ -55,3 +55,16 @@ class MenuHarianViewSet(viewsets.ModelViewSet):
     else:
         queryset = MenuHarian.objects.all()
         serializer_class = MenuHarianSerializer
+
+class MenuPelangganViewSet(viewsets.ModelViewSet):
+    permission_classes = [OnlyCustomerService]
+    time_now = datetime.datetime.now().time()
+    date_today = datetime.datetime.today().date()
+
+    if (time_now < MIN_TIME or time_now > MAX_TIME):
+        queryset = Menu.objects.all()
+        serializer_class = MenuSerializer
+    else:
+        queryset = MenuHarian.objects.all().filter(tanggal=date_today) #return menu base on today
+        serializer_class = MenuHarianSerializer
+
