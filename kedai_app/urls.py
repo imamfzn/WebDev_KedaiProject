@@ -6,7 +6,7 @@ from .views import *
 router = routers.DefaultRouter()
 #cust_router = routers.DefaultRouter()
 
-router.register(r'pelanggan', PelangganViewSet,base_name='pelanggan')
+router.register(r'pelanggan', PesananPelanggan,base_name='pelanggan')
 router.register(r'gedung', GedungViewSet,base_name='gedung')
 router.register(r'pesanan', PesananViewSet,base_name='pesanan')
 router.register(r'pesanancust', PesananCustViewSet,base_name='pesanancust')
@@ -19,6 +19,7 @@ router.register(r'menucust',MenuPelangganViewSet,base_name='menucust')
 swaggerdocs = get_swagger_view(title='Kedai API')
 
 urlpatterns = [
+	url(r'^pelanggan/(?P<pk>[0-9]+)/pesanan/$', PesananPelanggan),
     url(r'^servertime/', ServerTime.as_view()),
     url(r'^docs/',swaggerdocs),
     url(r'^menutest',MenuHarianList.as_view())

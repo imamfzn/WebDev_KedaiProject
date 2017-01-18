@@ -108,7 +108,7 @@ class Pesanan(models.Model):
         ('sudah konfirmasi','sudah konfirmasi'),
         ('sudah dicetak','sudah dicetak')
     )
-    id_pelanggan = models.ForeignKey(Pelanggan, models.DO_NOTHING, db_column='id_pelanggan')
+    id_pelanggan = models.ForeignKey(Pelanggan, models.DO_NOTHING, db_column='id_pelanggan',related_name='pesanan')
     id_menu_harian = models.ForeignKey(MenuHarian, models.DO_NOTHING, db_column='id_menu_harian')
     id_pesanan = models.AutoField(primary_key=True)
     waktu_pemesanan = models.TimeField(auto_now_add=True)
