@@ -71,3 +71,9 @@ class MenuHarianSerializer(serializers.ModelSerializer):
         model = MenuHarian
         fields = ['id_menu_harian','tanggal','id_menu','detail_menu']
         #depth = 1
+
+class MenuTest(serializers.ModelSerializer):
+    class Meta:
+        model = MenuHarian
+        fields = '__all__'
+        depth = 1

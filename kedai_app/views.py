@@ -1,4 +1,4 @@
-from rest_framework import viewsets
+from rest_framework import viewsets,generics
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
@@ -18,7 +18,7 @@ class ServerTime(APIView):
             'date' : datetime.datetime.now().date(),
             'time' : datetime.datetime.now().time()
         }
-        return Response(result)
+        return Response(result)        
 
 class PelangganViewSet(viewsets.ModelViewSet):
     permission_classes = [CustPostPermission]
@@ -66,4 +66,28 @@ class MenuPelangganViewSet(viewsets.ModelViewSet):
     else:
         queryset = MenuHarian.objects.all().filter(tanggal=date_today) #return menu base on today
         serializer_class = MenuHarianSerializer
+
+
+class MenuHarianList(generics.GenericAPIView):
+    queryset = MenuHarian.objects.all()
+    serializer_class = MenuTest
+
+    def get(self, request):
+        queryset = MenuHarian.objects.all()
+        serializer = MenuTest(queryset,many=True)
+        return Response(serializer.data)
+
+    def post(self, request):
+        menu = Menu.objects.get(id_menu = request.data.get('menu'))
+        #print(request.data.get('id_menu'))
+        serializer = MenuTest(menu,data=request.data)
+        if serializer.is_valid():
+            serializer.save(
+                menu = menu,
+                tanggal = datetime.datetime.now().date())
+            return Response(serializer.data)
+
+
+
+    
 

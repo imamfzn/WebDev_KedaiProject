@@ -14,12 +14,14 @@ router.register(r'suplier', SuplierViewSet)
 router.register(r'menu', MenuViewSet,base_name='menu')
 router.register(r'menuharian', MenuHarianViewSet,base_name='menuharian')
 router.register(r'menucust',MenuPelangganViewSet,base_name='menucust')
+#router.register(r'menutest',MenuHarianTest,base_name='menutest')
 
 swaggerdocs = get_swagger_view(title='Kedai API')
 
 urlpatterns = [
     url(r'^servertime/', ServerTime.as_view()),
-    url(r'^docs/',swaggerdocs)
+    url(r'^docs/',swaggerdocs),
+    url(r'^menutest',MenuHarianList.as_view())
 ]
 
 urlpatterns += router.urls
