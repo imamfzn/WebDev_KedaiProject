@@ -61,7 +61,7 @@ class MenuSerializer(serializers.ModelSerializer):
 class DetailMenuSerializer(serializers.ModelSerializer):
     class Meta:
         model = Menu
-        fields = ['nama_menu','harga_menu','deskripsi_menu']
+        fields = ['nama_menu','harga_menu','deskripsi_menu','foto_menu']
 
 class MenuHarianSerializer(serializers.ModelSerializer):
     id_menu = serializers.PrimaryKeyRelatedField(
