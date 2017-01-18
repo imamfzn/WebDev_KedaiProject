@@ -93,6 +93,20 @@ class PesananPelangganViewSet(viewsets.ModelViewSet):
     queryset = Pelanggan.objects.all()
     serializer_class = PesananPelanggan
 
+class PesananPelanggan(generics.GenericAPIView):
+    def get(self, request, pk):
+        try:
+            pelanggan = Pelanggan.objects.filter(id_pelanggan=int(pk))
+            queryset = pelanggan
+
+        except ObjectDoesNotExist:
+            return Response(
+                {"detail": "Not found."})
+
+        serializer = PesananPelanggan(pelanggan)
+        print(serializer.data)
+        return Response(serializer.data)
+
 
 
 

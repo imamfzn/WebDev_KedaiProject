@@ -21,6 +21,7 @@ router.register(r'menucust',MenuPelangganViewSet,base_name='menucust')
 swaggerdocs = get_swagger_view(title='Kedai API')
 
 urlpatterns = [
+	url(r'^pelanggan/(?P<pk>[0-9]+)/pesanan/$',PesananPelanggan.as_view(),name='pesanan_pelanggan'),
     url(r'^servertime/', ServerTime.as_view()),
     url(r'^docs/',swaggerdocs),
 ]
