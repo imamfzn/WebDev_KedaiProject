@@ -88,7 +88,7 @@ class MenuHarianList(generics.GenericAPIView):
             return Response(serializer.data)
 
 
-class PesananPelanggan(viewsets.ModelViewSet):
+class PesananPelangganViewSet(viewsets.ModelViewSet):
     queryset = Pelanggan.objects.all()
     serializer_class = PesananPelanggan
 
