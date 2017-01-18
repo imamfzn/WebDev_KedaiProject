@@ -89,6 +89,7 @@ class MenuHarianList(generics.GenericAPIView):
 
 
 class PesananPelangganViewSet(viewsets.ModelViewSet):
+    permission_classes = [OnlyCustomerService]
     queryset = Pelanggan.objects.all()
     serializer_class = PesananPelanggan
 
