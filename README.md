@@ -3,7 +3,7 @@ Untuk memenuhi mata kuliah pemrograman web.
 Mengimplementasi pemodelan sistem informasi yang dilakukan pada mata kuliah sistem informasi.
 Pemodelan yang sudah dilakukan : model data, model proses, dan model interface
 
-# Tekologi
+# Teknologi
 Menggunakan django rest framework untuk pembuatan api.
 Menggunakan angular2 untuk sisi front end.
 
