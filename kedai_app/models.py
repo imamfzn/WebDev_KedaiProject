@@ -88,7 +88,7 @@ class MenuHarian(models.Model):
 class Pelanggan(models.Model):
     nama_pelanggan = models.CharField(max_length=50)
     id_pelanggan = models.AutoField(primary_key=True)
-    id_gedung = models.ForeignKey(Gedung, models.DO_NOTHING, db_column='id_gedung')
+    gedung = models.ForeignKey(Gedung, models.DO_NOTHING, db_column='id_gedung')
     no_hp_pelanggan = models.CharField(max_length=15)
     keterangan_lokasi = models.CharField(max_length=50)
 

@@ -79,23 +79,28 @@ class MenuTest(serializers.ModelSerializer):
         depth = 1
 
 
-class DetailPesanan(serializers.ModelSerializer):
-    detail_menu = serializers.SerializerMethodField('get_menu')
+class DetailMenuPesananSerializer(serializers.ModelSerializer):
+    id_menu = serializers.PrimaryKeyRelatedField(
+      queryset= Menu.objects.all(), source='menu')
+    nama_menu = serializers.StringRelatedField(source='menu')
+
+    class Meta:
+        model = MenuHarian
+        fields = ['id_menu','nama_menu']
+
+
+class DetailPesananPelangganSerializer(serializers.ModelSerializer):
+    menu = DetailMenuPesananSerializer(read_only=True,source='id_menu_harian')
     class Meta:
         model = Pesanan
-        fields = ['detail_menu','jumlah_pesanan','status_pesanan']
-        #depth = 1
-
-    def get_menu(self,obj):
-        print(obj)
-        menu_harian = MenuHarian.objects.get(id_menu_harian=obj.id_menu_harian)
-        id_menu = menu_harian.id_menu
-        print(Menu.objects.get(id_menu=id_menu))
-        return Menu.objects.get(id_menu=id_menu)
+        fields = ['menu','jumlah_pesanan','status_pesanan']
+        depth = 1
 
 
 class PesananPelanggan(serializers.ModelSerializer):
-    #pesanan = serializers.SerializerMethodField('get_pesanans')
+    pesanan = DetailPesananPelangganSerializer(read_only=True,many=True)
     class Meta:
         model = Pelanggan
         fields =  '__all__'
+        depth = 1
+

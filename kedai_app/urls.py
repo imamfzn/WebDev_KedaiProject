@@ -6,7 +6,8 @@ from .views import *
 router = routers.DefaultRouter()
 #cust_router = routers.DefaultRouter()
 
-router.register(r'pelanggan', PesananPelanggan,base_name='pelanggan')
+router.register(r'pelanggan', Pelanggan,base_name='pelanggan')
+router.register(r'pesanan_pelanggan', PesananPelanggan,base_name='pesanan_pelanggan')
 router.register(r'gedung', GedungViewSet,base_name='gedung')
 router.register(r'pesanan', PesananViewSet,base_name='pesanan')
 router.register(r'pesanancust', PesananCustViewSet,base_name='pesanancust')
