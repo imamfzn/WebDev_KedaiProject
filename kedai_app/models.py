@@ -62,7 +62,7 @@ class Menu(models.Model):
     id_menu = models.AutoField(primary_key=True)
     id_suplier = models.ForeignKey('Suplier', models.DO_NOTHING, db_column='id_suplier')
     deskripsi_menu = models.TextField(blank=True, null=True)
-    foto_menu = models.ImageField(upload_to = 'menu/')#models.CharField(max_length=100, blank=True, null=True)
+    foto_menu = models.ImageField(upload_to = 'menu/',null=True)#models.CharField(max_length=100, blank=True, null=True)
 
     class Meta:
         managed = False
