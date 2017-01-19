@@ -64,9 +64,9 @@ class MenuPelangganViewSet(viewsets.ModelViewSet):
         queryset = Menu.objects.all()
         serializer_class = MenuSerializer
     else:
-        queryset = MenuHarian.objects.all().filter(tanggal=date_today) #return menu base on today
-        serializer_class = MenuHarianSerializer
-
+        id_menus = MenuHarian.objects.all().filter(tanggal = date_today).values('menu')
+        queryset = Menu.objects.all().filter(id_menu__in = id_menus)
+        serializer_class = MenuSerializer
 
 class MenuHarianList(generics.GenericAPIView):
     queryset = MenuHarian.objects.all()
